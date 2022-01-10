@@ -15,6 +15,9 @@ import com.platform.framework.KeyInput;
 import com.platform.framework.ObjectID;
 import com.platform.framework.Texture;
 
+/**
+ * Main class
+ */
 public class Game extends Canvas implements Runnable{
 	
 	private static final long serialVersionUID = -1943005620488936606L;
@@ -29,11 +32,16 @@ public class Game extends Canvas implements Runnable{
 	// Object
 	Handler handler;
 	Camera cam;
-	//Camera bgCam;
+	
+	// Camera bgCam;
 	static Texture tex;
 	
 	public static int LEVEL = 1;
 	
+	/**
+	 * Represents a group of constants
+	 * <br>In this case, it represents the states of the game
+	 */
 	public static enum STATE{
 		MENU,
 		INTRO,
@@ -47,8 +55,10 @@ public class Game extends Canvas implements Runnable{
 	private Intro intro;
 	private Outro outro;
 	
+	/**
+	 * Constructor
+	 */
 	private void init() {
-		requestFocus();
 		WIDTH = getWidth();
 		HEIGHT = getHeight();
 		
@@ -63,20 +73,19 @@ public class Game extends Canvas implements Runnable{
 		handler = new Handler(cam);
 	
 		handler.loadImageLevel(level1);
-		
-		
+		 
 		menu = new Menu();
 		intro = new Intro();
 		outro = new Outro();
-		
-		// handler.addObject(new Player(100, 100, handler, ObjectID.Player));
-		// handler.createLevel();
 		
 		this.addKeyListener(new KeyInput(handler));
 		this.addMouseListener(new Menu());
 		this.addMouseListener(new Intro());
 	}
 	
+	/**
+	 * Starts the thread
+	 */
 	public synchronized void start() {
 		if(running) {
 			return;
@@ -87,10 +96,14 @@ public class Game extends Canvas implements Runnable{
 		thread.start();
 	}
 	
-	// FPS @ 60
+	/**
+	 * Game loop
+	 * <br>The game loop is what runs the game. It's running the amount of ticks per second @ 60 
+	 */
 	public void run() {
 		
 		init();
+		this.requestFocus();
 		long lastTime = System.nanoTime();
 		double amountOfTicks = 60.0;
 		double ns = 1000000000 / amountOfTicks;
@@ -112,6 +125,9 @@ public class Game extends Canvas implements Runnable{
 		}
 	}
 	
+	/**
+	 * Determines how many times the game loop iterates
+	 */
 	private void tick() {
 		
 		if(State == STATE.GAME) {
@@ -129,10 +145,13 @@ public class Game extends Canvas implements Runnable{
 		}	
 	}
 	
+	/**
+	 * Renders all the needed graphics/images for the program
+	 */
 	private void render() { // Graphics
 		BufferStrategy bs = this.getBufferStrategy(); // Canvas method
 		if(bs == null) {
-			this.createBufferStrategy(3); // The amount of buffers
+			this.createBufferStrategy(3); // The amount of buffers (we don't have to wait) 
 			return;
 		}
 		
@@ -142,6 +161,7 @@ public class Game extends Canvas implements Runnable{
 		Graphics g = bs.getDrawGraphics();
 		Graphics2D g2d = (Graphics2D) g;
 		
+		// This is where we draw everything from our game
 		if(State == STATE.INTRO) {
 			intro.render(g);
 		}
@@ -169,10 +189,18 @@ public class Game extends Canvas implements Runnable{
 		bs.show();
 	}
     
+	/**
+	 * Get instance of the texture class
+	 * @return texture
+	 */
 	public static Texture getInstance() {
 		return tex;
 	}
 	
+	/**
+	 * Main function where we create a new window
+	 * @param args
+	 */
 	public static void main(String args[]) {
 		new Window(800, 600, "Hamster Platform Game", new Game());
 	}

@@ -10,6 +10,9 @@ import com.platform.objects.Block;
 import com.platform.objects.Flag;
 import com.platform.objects.Player;
 
+/**
+ * Handles the creation of levels
+ */
 public class Handler {
 	
 	public ArrayList<GameObject> object = new ArrayList<GameObject>();
@@ -17,18 +20,23 @@ public class Handler {
 	private GameObject tempObject;
 	private Camera cam;
 	
-	private BufferedImage level2 = null, level3 = null, end = null;
+	private BufferedImage level2 = null, level3 = null;
 	
+	/**
+	 * Constructor
+	 * @param cam camera object
+	 */
 	public Handler(Camera cam) {
 		this.cam = cam;
 		
 		BufferedImageLoader loader = new BufferedImageLoader();
-		level2 = loader.loadImage("/bgLevel2.png"); // loading level
-		level3 = loader.loadImage("/bgLevel3.png"); // loading level
-		end = loader.loadImage("/menuBG.png");
+		level2 = loader.loadImage("/bgLevel2.png"); // Loading level
+		level3 = loader.loadImage("/bgLevel3.png"); // Loading level
 	}
 	
-	
+	/**
+	 * Traverses through the list, updates it and determines the number of ticks
+	 */
 	public void tick() {
 		for(int i=0; i<object.size(); i++) {
 			tempObject = object.get(i);
@@ -36,6 +44,10 @@ public class Handler {
 		}
 	}
 	
+	/**
+	 * Traverses through the list, updates and renders it
+	 * @param g tool that draws onto the component
+	 */
 	public void render(Graphics g) {
 		for(int i=0; i<object.size(); i++) {
 			tempObject = object.get(i);
@@ -43,6 +55,10 @@ public class Handler {
 		}
 	}
 	
+	/**
+	 * Loads the images for each level
+	 * @param image image layout for the levels
+	 */
 	public void loadImageLevel(BufferedImage image) {
 		int w = image.getWidth();
 		int h = image.getHeight();
@@ -85,6 +101,9 @@ public class Handler {
 		}
 	}
 	
+	/**
+	 * Switches level
+	 */
 	public void switchLevel() {
 		clearLevel();
 		cam.setX(0);
@@ -104,14 +123,25 @@ public class Handler {
 		Game.LEVEL++;
 	}
 	
+	/**
+	 * Creates a blank slate
+	 */
 	private void clearLevel() {
 		object.clear();
 	}
 	
+	/**
+	 * Adds object
+	 * @param object object
+	 */
 	public void addObject(GameObject object) {
 		this.object.add(object);
 	}
 	
+	/**
+	 * Removes object
+	 * @param object object
+	 */
 	public void removeObject(GameObject object) {
 		this.object.remove(object);
 	}

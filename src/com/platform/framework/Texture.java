@@ -4,6 +4,9 @@ import java.awt.image.BufferedImage;
 
 import com.platform.window.BufferedImageLoader;
 
+/**
+ * Responsible for all textures for the game objects
+ */
 public class Texture {
 	
 	SpriteSheet bs, ps, fl, ex;
@@ -18,6 +21,9 @@ public class Texture {
 	public BufferedImage[] flag = new BufferedImage[1];
 	public BufferedImage[] exit = new BufferedImage[1];
 	
+	/** 
+	 * Constructor
+	 */
 	public Texture() {
 		BufferedImageLoader loader = new BufferedImageLoader();
 		
@@ -37,25 +43,28 @@ public class Texture {
 		getTextures();
 	}
 	
+	/**
+	 * Gets the individual textures from the sprite sheets
+	 */
 	private void getTextures() {
-		block[0] = bs.grabImage(1, 1, 32, 32); // dirt block
-		block[1] = bs.grabImage(2, 1, 32, 32); // grass block
-		block[2] = bs.grabImage(1, 2, 32, 32); // can textures
-		block[3] = bs.grabImage(2, 2, 32, 32); 
-		flag[0] = fl.grabImage(1, 1, 32, 32);
-		exit[0] = ex.grabImage(1, 1, 32, 32);
+		block[0] = bs.grabImage(1, 1, 32, 32); // tile texture
+		block[1] = bs.grabImage(2, 1, 32, 32); // tile texture
+		block[2] = bs.grabImage(1, 2, 32, 32); // can texture
+		block[3] = bs.grabImage(2, 2, 32, 32); // can texture
+		flag[0] = fl.grabImage(1, 1, 32, 32); // flag/end goal texture
+		exit[0] = ex.grabImage(1, 1, 32, 32); // exit texture
 		
-		
+		  //looking right
 		for (int i = 0; i < 7; i++) {
-			player[i] = ps.grabImage(i+1, 1, 32, 64); //idle frame for player
+			player[i] = ps.grabImage(i+1, 1, 32, 64); // player walking right frames
 	      }
 	      //looking left
 		for (int i = 7, ii = 20; i < 14; i++, --ii) {
-			player[i] = ps.grabImage(ii, 1, 32, 64); //idle frame for player
+			player[i] = ps.grabImage(ii, 1, 32, 64); // player walking left frames
 	      }
 	      //jumping
 		for (int i = 0, ii = 8; i < 6; i++, ii++) {
-			player_jump[i] = ps.grabImage(ii, 2, 32, 64); //idle frame for player
+			player_jump[i] = ps.grabImage(ii, 2, 32, 64); // jumping player frames
 	    }
 	}
 

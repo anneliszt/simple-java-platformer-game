@@ -13,21 +13,27 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-
+/**
+ * Shows the main menu of the game with the options to start and exit
+ */
 public class Menu implements MouseListener{
+	
 	public BufferedImage bg = null, bgImg = null;
 	public Rectangle startButton = new Rectangle(Game.WIDTH/2-170 + 120, 350, 100, 50);
 	public Rectangle exitButton = new Rectangle(Game.WIDTH/2-170 + 120, 420, 100, 50);
 	
 	Font customFont;
 	
+	/**
+	 * Renders the appearance for the main menu
+	 * @param g tool that draws onto the component
+	 */
 	public void render(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
 		
 		BufferedImageLoader loader = new BufferedImageLoader();
 		bg = loader.loadImage("/menuTitle.png");
 		bgImg = loader.loadImage("/menuBG.png");
-		
 		
 		try {
 	        customFont = Font.createFont(Font.TRUETYPE_FONT, new File("Minecraft.ttf")).deriveFont(30f);
@@ -45,24 +51,14 @@ public class Menu implements MouseListener{
 		
 		g.drawString("Start", startButton.x+20, startButton.y+30);
 		g.drawString("Exit", exitButton.x+20, exitButton.y+30);
-		
 	}
 
-	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	public void mousePressed(MouseEvent e) {
 		int mx = e.getX();
 		int my = e.getY();
-		
-		/**
-		 public Rectangle startButton = new Rectangle(Game.WIDTH/2-170 + 120, 350, 100, 50);
-		 public Rectangle exitButton = new Rectangle(Game.WIDTH/2-170 + 120, 420, 100, 50);
-	
-		 */
 		
 		if(mx >= Game.WIDTH/2-170 + 120 && mx <= Game.WIDTH/2+220) {
 			if(my >=350 && my <= 400) {
@@ -77,25 +73,14 @@ public class Menu implements MouseListener{
 				System.exit(0);
 			}
 		}
-		
 	}
 
-	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
-	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
-	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
-	
 }

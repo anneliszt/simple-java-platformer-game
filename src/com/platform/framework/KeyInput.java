@@ -7,14 +7,21 @@ import com.platform.window.Game;
 import com.platform.window.Game.STATE;
 import com.platform.window.Handler;
 
+/**
+ * Receives keyboard events
+ */
 public class KeyInput extends KeyAdapter{
 	
 	Handler handler;
 	
+	/**
+	 * Constructor
+	 * @param handler handler
+	 */
 	public KeyInput(Handler handler) {
 		this.handler = handler;
 	}
-	
+
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 		

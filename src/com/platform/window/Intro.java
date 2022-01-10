@@ -7,11 +7,18 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 
+/**
+ * Shows the introduction of the game after clicking start in the main menu
+ */
 public class Intro implements MouseListener{
 	
 	public BufferedImage bgImg = null, button = null;
 	public Rectangle contButton = new Rectangle(450, -50, Game.WIDTH, Game.HEIGHT);
 	
+	/**
+	 * Renders the images
+	 * @param g tool that draws onto the components 
+	 */
 	public void render(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
 		
@@ -33,11 +40,6 @@ public class Intro implements MouseListener{
 		int mx = e.getX();
 		int my = e.getY();
 		
-		/**
-		 public Rectangle contButton = new Rectangle(450, -50, Game.WIDTH, Game.HEIGHT);
-	
-		 */
-		
 		if(mx > 450) {
 			if(my >= -50) {
 				// Pressed play button
@@ -49,7 +51,6 @@ public class Intro implements MouseListener{
 
 	public void mouseReleased(MouseEvent e) {
 	}
-
 
 	public void mouseEntered(MouseEvent e) {
 	}

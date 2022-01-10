@@ -7,7 +7,9 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
-
+/**
+ * Shows the ending of the game or its outro
+ */
 public class Outro {
     
 	public BufferedImage bg = null, bgImg = null;
@@ -16,6 +18,10 @@ public class Outro {
 	
 	Font customFont;
 	
+	/**
+	 * Renders the appearance for the outro
+	 * @param g tool that draws onto the component
+	 */
 	public void render(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
 		
