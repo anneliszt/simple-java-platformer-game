@@ -88,7 +88,7 @@ public class Game extends Canvas implements Runnable{
 	}
 	
 	// FPS @ 60
-	public void run() { // Explanation is at 2DGame vid
+	public void run() {
 		
 		init();
 		long lastTime = System.nanoTime();
@@ -96,26 +96,18 @@ public class Game extends Canvas implements Runnable{
 		double ns = 1000000000 / amountOfTicks;
 		double delta = 0;
 		long timer = System.currentTimeMillis();
-		int updates = 0;
-		int frames = 0;
 		while(running){
 			long now = System.nanoTime();
 			delta += (now - lastTime) / ns;
 			lastTime = now;
 			while(delta >= 1){
 				tick();
-				updates++;
 				delta--;
 			}
 			
 			render();
-			frames++;
-					
 			if(System.currentTimeMillis() - timer > 1000){
 				timer += 1000;
-				System.out.println("FPS: " + frames + " TICKS: " + updates);
-				frames = 0;
-				updates = 0;
 			}
 		}
 	}
@@ -161,7 +153,6 @@ public class Game extends Canvas implements Runnable{
 		else if(State == STATE.GAME) {
 			g.fillRect(0, 0, getWidth(), getHeight());
 			
-			//g.drawImage(bg, -150, 0, getWidth()+700, getHeight(), this);
 			g2d.translate(cam.getX(), cam.getY()); // Beginning of camera
 				for(int xx=0; xx < bg.getWidth() * 2; xx += bg.getWidth()) {
 					g.drawImage(bg, xx-100, 0, this);
