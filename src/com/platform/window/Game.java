@@ -11,6 +11,8 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
+import javax.sound.sampled.LineUnavailableException;
+
 import com.platform.framework.KeyInput;
 import com.platform.framework.ObjectID;
 import com.platform.framework.Texture;
@@ -202,7 +204,11 @@ public class Game extends Canvas implements Runnable{
 	 * @param args
 	 */
 	public static void main(String args[]) {
-		new Window(800, 600, "Hamster Platform Game", new Game());
+		try {
+			new Window(800, 600, "Hamster Platform Game", new Game());
+		} catch (LineUnavailableException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
