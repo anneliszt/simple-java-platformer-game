@@ -27,24 +27,18 @@ public class Menu implements MouseListener{
 	/**
 	 * Renders the appearance for the main menu
 	 * @param g tool that draws onto the component
+	 * @throws LineUnavailableException 
+	 * @throws InterruptedException 
 	 */
 	public void render(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
+		
 		
 		BufferedImageLoader loader = new BufferedImageLoader();
 		bg = loader.loadImage("/menuTitle.png");
 		bgImg = loader.loadImage("/menuBG.png");
 		
-		try {
-	        customFont = Font.createFont(Font.TRUETYPE_FONT, new File("Minecraft.ttf")).deriveFont(30f);
-	        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-	        ge.registerFont(customFont);
-	    }
-	    catch (IOException | FontFormatException e) {
-	        e.printStackTrace();
-	    }
-
-		g.setFont(customFont);
+		g.setFont(new Font("Courier New", Font.BOLD, 30));
 		g.setColor(Color.black);
 		g2d.drawImage(bgImg, 0, 0, Game.WIDTH, Game.HEIGHT, null);
 		g2d.drawImage(bg, 0, 0, Game.WIDTH, Game.HEIGHT, null);
