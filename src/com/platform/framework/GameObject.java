@@ -3,7 +3,6 @@ package com.platform.framework;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 /**
  * Responsible for all game objects
