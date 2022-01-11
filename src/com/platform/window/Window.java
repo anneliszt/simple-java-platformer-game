@@ -41,6 +41,7 @@ public class Window {
 	public Window(int w, int h, String title, Game game) throws LineUnavailableException {
 		try {
 			AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File("res/bgmusic.wav"));
+
 			AudioFormat format = inputStream.getFormat();
             DataLine.Info info = new DataLine.Info(Clip.class, format);
             Clip clip = (Clip)AudioSystem.getLine(info);

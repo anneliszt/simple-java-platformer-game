@@ -27,6 +27,7 @@ public class Menu implements MouseListener{
 	public void render(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
 		
+		
 		BufferedImageLoader loader = new BufferedImageLoader();
 		bg = loader.loadImage("/menuTitle.png");
 		bgImg = loader.loadImage("/menuBG.png");
