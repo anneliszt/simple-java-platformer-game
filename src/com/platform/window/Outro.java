@@ -12,11 +12,7 @@ import java.awt.image.BufferedImage;
  */
 public class Outro {
     
-	public BufferedImage bg = null, bgImg = null;
-	public Rectangle startButton = new Rectangle(Game.WIDTH/2-170 + 120, 350, 100, 50);
-	public Rectangle exitButton = new Rectangle(Game.WIDTH/2-170 + 120, 420, 100, 50);
-	
-	Font customFont;
+	public BufferedImage bgImg = null;
 	
 	/**
 	 * Renders the appearance for the outro

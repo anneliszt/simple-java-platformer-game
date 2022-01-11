@@ -129,8 +129,8 @@ public abstract class GameObject {
 	}
 
 	/**
-	 * TRUE if it's jumping, FALSE if otherwise
-	 * @return true
+	 * TRUE if it's not jumping, FALSE if otherwise
+	 * @return false
 	 */
 	public boolean isJumping() {
 		return jumping;

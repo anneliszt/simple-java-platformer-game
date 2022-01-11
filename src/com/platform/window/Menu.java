@@ -2,16 +2,12 @@ package com.platform.window;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 /**
  * Shows the main menu of the game with the options to start and exit
@@ -22,11 +18,11 @@ public class Menu implements MouseListener{
 	public Rectangle startButton = new Rectangle(Game.WIDTH/2-170 + 120, 350, 100, 50);
 	public Rectangle exitButton = new Rectangle(Game.WIDTH/2-170 + 120, 420, 100, 50);
 	
-	Font customFont;
-	
 	/**
 	 * Renders the appearance for the main menu
 	 * @param g tool that draws onto the component
+	 * @throws LineUnavailableException 
+	 * @throws InterruptedException 
 	 */
 	public void render(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
@@ -34,17 +30,8 @@ public class Menu implements MouseListener{
 		BufferedImageLoader loader = new BufferedImageLoader();
 		bg = loader.loadImage("/menuTitle.png");
 		bgImg = loader.loadImage("/menuBG.png");
-		
-		try {
-	        customFont = Font.createFont(Font.TRUETYPE_FONT, new File("Minecraft.ttf")).deriveFont(30f);
-	        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-	        ge.registerFont(customFont);
-	    }
-	    catch (IOException | FontFormatException e) {
-	        e.printStackTrace();
-	    }
 
-		g.setFont(customFont);
+		g.setFont(new Font("Courier New", Font.BOLD, 30));
 		g.setColor(Color.black);
 		g2d.drawImage(bgImg, 0, 0, Game.WIDTH, Game.HEIGHT, null);
 		g2d.drawImage(bg, 0, 0, Game.WIDTH, Game.HEIGHT, null);

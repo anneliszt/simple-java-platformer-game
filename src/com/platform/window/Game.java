@@ -1,15 +1,12 @@
 package com.platform.window;
 
 import java.awt.Canvas;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+
+import javax.sound.sampled.LineUnavailableException;
 
 import com.platform.framework.KeyInput;
 import com.platform.framework.ObjectID;
@@ -45,8 +42,8 @@ public class Game extends Canvas implements Runnable{
 	public static enum STATE{
 		MENU,
 		INTRO,
-		OUTRO,
-		GAME
+		GAME,
+		OUTRO
 	};
 	
 	public static STATE State = STATE.MENU;
@@ -118,7 +115,11 @@ public class Game extends Canvas implements Runnable{
 				delta--;
 			}
 			
-			render();
+			try {
+				render();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 			if(System.currentTimeMillis() - timer > 1000){
 				timer += 1000;
 			}
@@ -147,11 +148,12 @@ public class Game extends Canvas implements Runnable{
 	
 	/**
 	 * Renders all the needed graphics/images for the program
+	 * @throws InterruptedException 
 	 */
-	private void render() { // Graphics
+	private void render() throws InterruptedException { // Graphics
 		BufferStrategy bs = this.getBufferStrategy(); // Canvas method
 		if(bs == null) {
-			this.createBufferStrategy(3); // The amount of buffers (we don't have to wait) 
+			this.createBufferStrategy(3); // The amount of buffers (we don't have to wait long) 
 			return;
 		}
 		
@@ -183,6 +185,7 @@ public class Game extends Canvas implements Runnable{
 			
 		}else if(State == STATE.MENU) {
 			menu.render(g);
+			
 		}
 		
 		g.dispose();
@@ -202,7 +205,11 @@ public class Game extends Canvas implements Runnable{
 	 * @param args
 	 */
 	public static void main(String args[]) {
-		new Window(800, 600, "Hamster Platform Game", new Game());
+		try {
+			new Window(800, 600, "Hamster Platform Game", new Game());
+		} catch (LineUnavailableException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
