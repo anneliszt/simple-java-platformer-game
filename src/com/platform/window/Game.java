@@ -56,28 +56,28 @@ public class Game extends Canvas implements Runnable{
 	 * Constructor
 	 */
 	private void init() {
-		WIDTH = getWidth();
+		WIDTH = getWidth();															// Gets dimensions of the game
 		HEIGHT = getHeight();
 		
 		tex = new Texture();
 		
-		BufferedImageLoader loader = new BufferedImageLoader();
-		level1 = loader.loadImage("/bgLevel1.png"); // loading level
+		BufferedImageLoader loader = new BufferedImageLoader();						// Loads the images
+		level1 = loader.loadImage("/bgLevel1.png"); 
 		bg = loader.loadImage("/petBG.png");
 		
 		
-		cam = new Camera(0, 0);
-		handler = new Handler(cam);
+		cam = new Camera(0, 0);														// Camera object
+		handler = new Handler(cam);													// Handler object
 	
-		handler.loadImageLevel(level1);
+		handler.loadImageLevel(level1);												// Loads level 1
 		 
-		menu = new Menu();
-		intro = new Intro();
-		outro = new Outro();
+		menu = new Menu();															// Menu object
+		intro = new Intro();														// Intro object
+		outro = new Outro();														// Outro object
 		
-		this.addKeyListener(new KeyInput(handler));
-		this.addMouseListener(new Menu());
-		this.addMouseListener(new Intro());
+		this.addKeyListener(new KeyInput(handler));									// Receives keyboard event
+		this.addMouseListener(new Menu());											// Receives mouse events
+		this.addMouseListener(new Intro());											// Receives mouse events
 	}
 	
 	/**
@@ -90,17 +90,18 @@ public class Game extends Canvas implements Runnable{
 		
 		running = true;
 		thread = new Thread(this);
-		thread.start();
+		thread.start();																// Thread is starting
 	}
 	
 	/**
 	 * Game loop
-	 * <br>The game loop is what runs the game. It's running the amount of ticks per second @ 60 
+	 * <br>The game loop is what runs the game. It's running 
+	 * the amount of ticks per second @ 60 
 	 */
 	public void run() {
 		
 		init();
-		this.requestFocus();
+		this.requestFocus();														// Component get the input focus
 		long lastTime = System.nanoTime();
 		double amountOfTicks = 60.0;
 		double ns = 1000000000 / amountOfTicks;
@@ -131,8 +132,8 @@ public class Game extends Canvas implements Runnable{
 	 */
 	private void tick() {
 		
-		if(State == STATE.GAME) {
-			handler.tick();
+		if(State == STATE.GAME) {														
+			handler.tick();															
 		}
 		
 		if(State == STATE.INTRO) {
@@ -150,40 +151,41 @@ public class Game extends Canvas implements Runnable{
 	 * Renders all the needed graphics/images for the program
 	 * @throws InterruptedException 
 	 */
-	private void render() throws InterruptedException { // Graphics
-		BufferStrategy bs = this.getBufferStrategy(); // Canvas method
+	private void render() throws InterruptedException { 							// Graphics
+		BufferStrategy bs = this.getBufferStrategy(); 								// Canvas method
 		if(bs == null) {
-			this.createBufferStrategy(3); // The amount of buffers (we don't have to wait long) 
+			this.createBufferStrategy(3); 											// The amount of buffers 
 			return;
 		}
 		
-		// Buffer strategy represents the mechanism with which to organize complex memory on a particular Canvas
-		// It pre-loads images at the same time
+		/* Buffer strategy represents the mechanism with which to 
+		organize complex memory on a particular Canvas
+		It pre-loads images at the same time */
 		
 		Graphics g = bs.getDrawGraphics();
 		Graphics2D g2d = (Graphics2D) g;
 		
 		// This is where we draw everything from our game
-		if(State == STATE.INTRO) {
+		if(State == STATE.INTRO) {													// Renders intro class
 			intro.render(g);
 		}
 		
-		else if(State == STATE.OUTRO) {
+		else if(State == STATE.OUTRO) {												// Renders outro class
 			outro.render(g);
 		}
 		
-		else if(State == STATE.GAME) {
+		else if(State == STATE.GAME) {												// Renders handler class
 			g.fillRect(0, 0, getWidth(), getHeight());
 			
-			g2d.translate(cam.getX(), cam.getY()); // Beginning of camera
+			g2d.translate(cam.getX(), cam.getY()); 									// Beginning of camera	
 				for(int xx=0; xx < bg.getWidth() * 2; xx += bg.getWidth()) {
-					g.drawImage(bg, xx-100, 0, this);
+					g.drawImage(bg, xx-100, 0, this);								// Draw background
 				handler.render(g);
 				}
 				
-			g2d.translate(-cam.getX(), -cam.getY()); // End of camera
+			g2d.translate(-cam.getX(), -cam.getY());			 					// End of camera
 			
-		}else if(State == STATE.MENU) {
+		}else if(State == STATE.MENU) {												// Renders menu class
 			menu.render(g);
 			
 		}

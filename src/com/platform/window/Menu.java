@@ -27,16 +27,20 @@ public class Menu implements MouseListener{
 	public void render(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
 		
-		
+		// Loads images
 		BufferedImageLoader loader = new BufferedImageLoader();
 		bg = loader.loadImage("/menuTitle.png");
 		bgImg = loader.loadImage("/menuBG.png");
 
+		// Set font and font color
 		g.setFont(new Font("Courier New", Font.BOLD, 30));
 		g.setColor(Color.black);
+		
+		// Draw background image
 		g2d.drawImage(bgImg, 0, 0, Game.WIDTH, Game.HEIGHT, null);
 		g2d.drawImage(bg, 0, 0, Game.WIDTH, Game.HEIGHT, null);
 		
+		// Draw labels for the buttons
 		g.drawString("Start", startButton.x+20, startButton.y+30);
 		g.drawString("Exit", exitButton.x+20, exitButton.y+30);
 	}

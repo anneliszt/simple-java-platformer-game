@@ -15,9 +15,9 @@ import com.platform.objects.Player;
  */
 public class Handler {
 	
-	public ArrayList<GameObject> object = new ArrayList<GameObject>();
+	public ArrayList<GameObject> object = new ArrayList<GameObject>();						// Array list for game object
 	
-	private GameObject tempObject;
+	private GameObject tempObject;															
 	private Camera cam;
 	
 	private BufferedImage level2 = null, level3 = null;
@@ -29,9 +29,9 @@ public class Handler {
 	public Handler(Camera cam) {
 		this.cam = cam;
 		
-		BufferedImageLoader loader = new BufferedImageLoader();
-		level2 = loader.loadImage("/bgLevel2.png"); // Loading level
-		level3 = loader.loadImage("/bgLevel3.png"); // Loading level
+		BufferedImageLoader loader = new BufferedImageLoader();								// Loads images
+		level2 = loader.loadImage("/bgLevel2.png");
+		level3 = loader.loadImage("/bgLevel3.png"); 
 	}
 	
 	/**
@@ -64,37 +64,39 @@ public class Handler {
 		int h = image.getHeight();
 		
 		for(int xx=0; xx<h; xx++) {
-			for(int yy=0; yy<w; yy++) { // Gets pixel and rgb values
+			for(int yy=0; yy<w; yy++) { 											
+				
+				// Returns an integer pixel in the default RGB color model in order to get RBG values
 				int pixel = image.getRGB(xx, yy);
 				int red = (pixel >> 16) & 0xff;
 				int green = (pixel >> 8 & 0xff);
 				int blue = (pixel) & 0xff;
 				
-				if(red == 255 && green == 255 & blue == 255) { // Tiles
+				if(red == 255 && green == 255 & blue == 255) { 						// Tiles
 					addObject(new Block(xx*32, yy*32, 0, ObjectID.Block));
 				}
 				
-				if(red == 255 && green == 0 & blue == 0) { // Tiles
+				if(red == 255 && green == 0 & blue == 0) { 							// Tiles
 					addObject(new Block(xx*32, yy*32, 1, ObjectID.Block));
 				}
 				
-				if(red == 247 && green == 0 & blue == 185) { // Can Texture
+				if(red == 247 && green == 0 & blue == 185) { 						// Can Texture
 					addObject(new Block(xx*32, yy*32, 2, ObjectID.Block));
 				}
 				
-				if(red == 255 && green == 255 & blue == 0) { // Can Texture
+				if(red == 255 && green == 255 & blue == 0) { 						// Can Texture
 					addObject(new Block(xx*32, yy*32, 3, ObjectID.Block));
 				}
 				
-				if(red == 157 && green == 0 & blue == 255) { // Flag Goal
+				if(red == 157 && green == 0 & blue == 255) { 						// Flag Goal
 					addObject(new Flag(xx*32, yy*32, 0,  ObjectID.Flag));
 				}
 				
-				if(red == 0 && green == 255 & blue == 0) { // Flag Exit
+				if(red == 0 && green == 255 & blue == 0) { 							// Flag Exit
 					addObject(new Flag(xx*32, yy*32, 1,  ObjectID.Flag));
 				}
 				
-				if(red == 0 && green == 0 & blue == 255) { // Player
+				if(red == 0 && green == 0 & blue == 255) { 							// Player
 					addObject(new Player(xx*32, yy*32, this, cam, ObjectID.Player));
 				}
 			}
@@ -105,22 +107,22 @@ public class Handler {
 	 * Switches level
 	 */
 	public void switchLevel() {
-		clearLevel();
-		cam.setX(0);
+		clearLevel();																// Clear level
+		cam.setX(0);																// Reset camera
 		
 		switch(Game.LEVEL) 
 		{
 		case 1:
-			loadImageLevel(level2);
+			loadImageLevel(level2);													// Load level 2
 			break;
 		case 2:
-			loadImageLevel(level3);
+			loadImageLevel(level3);													// Load level 3
 			break;
 		case 3:
-			Game.State = Game.STATE.OUTRO;
+			Game.State = Game.STATE.OUTRO;											// Load outro	
 			break;
 		}
-		Game.LEVEL++;
+		Game.LEVEL++;																// Increment game level
 	}
 	
 	/**

@@ -1,10 +1,7 @@
 package com.platform.window;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 /**
@@ -21,10 +18,11 @@ public class Outro {
 	public void render(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
 		
+		// Loads images
 		BufferedImageLoader loader = new BufferedImageLoader();
 		bgImg = loader.loadImage("/bgOutro.png");
-
-		g.setColor(Color.black);
+		
+		// Draw images
 		g2d.drawImage(bgImg, 0, 0, Game.WIDTH, Game.HEIGHT, null);
 	}
 }

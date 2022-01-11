@@ -39,6 +39,7 @@ public class Window {
 	 * 
 	 */
 	public Window(int w, int h, String title, Game game) throws LineUnavailableException {
+		// Background music
 		try {
 			AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File("res/bgmusic.wav"));
 
@@ -58,13 +59,13 @@ public class Window {
 		game.setMaximumSize(new Dimension(w, h));
 		game.setMinimumSize(new Dimension(w, h));
 		
-		JFrame frame = new JFrame(title); // Container that provides a window on the screen
-		frame.add(game); // 
-		frame.pack();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setResizable(false);
+		JFrame frame = new JFrame(title); 							// Container that provides a window on the screen
+		frame.add(game); 											// Adds game to frame
+		frame.pack();												// Sized to fit the preferred size and layouts of its subcomponents
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		// Terminates program when closing
+		frame.setResizable(false);									// Will not allow resizing
 		frame.setLocationRelativeTo(null);
-		game.start();
-		frame.setVisible(true);
+		game.start();												// Starts game
+		frame.setVisible(true);										// Set frame visible to true
 	}
 }

@@ -18,15 +18,16 @@ import com.platform.window.Handler;
  */
 public class Player extends GameObject{
 	
-	private float width = 40, height = 96;
-	private float gravity = 0.45f;
+	private float width = 40, height = 96;											// Width and height of player
 	
-	private final float MAX_SPEED = 10;
+	private float gravity = 0.45f; 													// Determines how high player jumps
 	
-	private Handler handler;
-	Texture tex = Game.getInstance();
+	private final float MAX_SPEED = 10;												// Determines how fast player walks
 	
-	private Animation playerWalk, playerWalkLeft;
+	private Handler handler;														// Handler class
+	Texture tex = Game.getInstance();												// Gets instance of texture
+	
+	private Animation playerWalk, playerWalkLeft;									// Animation class when walking
 	
 	/**
 	 * Constructor
@@ -50,8 +51,8 @@ public class Player extends GameObject{
 		x += velX;
 		y += velY;
 		
-		if(velX > 0) facing = 1;
-		else if(velX < 0) facing = -1;
+		if(velX > 0) facing = 1;													// Facing to the right
+		else if(velX < 0) facing = -1;												// Facing to the left
 		
 		if(falling || jumping) {
 			velY += gravity;
@@ -59,9 +60,9 @@ public class Player extends GameObject{
 				velY = MAX_SPEED;
 			}
 		}
-		Collision(object);
+		Collision(object);															// Call collision
 		
-		playerWalk.runAnimation();
+		playerWalk.runAnimation();													// Run animations
 		playerWalkLeft.runAnimation();
 	}
 	
@@ -73,14 +74,14 @@ public class Player extends GameObject{
 		for(int i=0; i<handler.object.size(); i++) {
 			GameObject tempObject = handler.object.get(i);
 			
-			if(tempObject.getID() == ObjectID.Block) { // If we are colliding with the block
+			if(tempObject.getID() == ObjectID.Block) { 								// If we are colliding with the block
 				
-				if(getBoundsTop().intersects(tempObject.getBounds())) {
+				if(getBoundsTop().intersects(tempObject.getBounds())) { 			// Colliding at the top
 					y = (float) (tempObject.getY() + (tempObject.getBounds().getHeight()));
 					velY = 0;
 				}
 				
-				if(getBounds().intersects(tempObject.getBounds())) { // Bottom
+				if(getBounds().intersects(tempObject.getBounds())) { 				// Colliding at the bottom
 					y = tempObject.getY()-height;	
 					velY = 0;
 					falling = false;
@@ -89,16 +90,14 @@ public class Player extends GameObject{
 					falling = true;
 				}
 				
-				// Right
-				if(getBoundsRight().intersects(tempObject.getBounds())) {
+				if(getBoundsRight().intersects(tempObject.getBounds())) {			// Colliding at the right
 					x = tempObject.getX()-width;	
 				}
 				
-				// Left
-				if(getBoundsLeft().intersects(tempObject.getBounds())) {
+				if(getBoundsLeft().intersects(tempObject.getBounds())) {			// Colliding at the left
 					x = (float) (tempObject.getX() + tempObject.getBounds().getWidth());	
 				}
-			} else if (tempObject.getID() == ObjectID.Flag) {
+			} else if (tempObject.getID() == ObjectID.Flag) {						// If we are colliding with the flag
 				// Switch level if it reaches the flag
 				if(getBounds().intersects(tempObject.getBounds())) {
 					handler.switchLevel();
@@ -112,26 +111,27 @@ public class Player extends GameObject{
 	 */
 	public void render(Graphics g) {
 		g.setColor(Color.blue);
-		// g.fillRect((int)x, (int)y, (int)width, (int)height);
+		
+		// If jumping
 		if(jumping) {
-			if(facing == 1) {
-				g.drawImage(tex.player_jump[2], (int)x, (int)y, 48, 96, null);
-			}else if(facing == -1) {
+			if(facing == 1) { // Facing to the right
+				g.drawImage(tex.player_jump[2], (int)x, (int)y, 48, 96, null);	
+			}else if(facing == -1) { // Facing to the left
 				g.drawImage(tex.player_jump[3], (int)x, (int)y, 48, 96, null);
 			}
-		}else {
+		}else { // If walking
 			if(velX != 0) {
-				if(facing == 1) {
+				if(facing == 1) { // Facing to the right
 					playerWalk.drawAnimation(g, (int)x, (int)y, 48, 96);
-				}else {
+				}else { // Facing to the left
 					playerWalkLeft.drawAnimation(g, (int)x, (int)y, 48, 96);
 				}
 			}
 			
-			else {
-				if(facing == 1) {
+			else { // Idle frames
+				if(facing == 1) { // Facing to the right
 					g.drawImage(tex.player[0], (int)x, (int)y, 48, 96, null);
-				}else if(facing == -1){
+				}else if(facing == -1){ // Facing to the left
 					g.drawImage(tex.player[7], (int)x, (int)y, 48, 96, null);
 				}
 			}

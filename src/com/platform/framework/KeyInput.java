@@ -32,20 +32,20 @@ public class KeyInput extends KeyAdapter{
 			GameObject tempObject = handler.object.get(i);
 			
 			if(tempObject.getID() == ObjectID.Player) {
-				if(key == KeyEvent.VK_D) {
+				if(key == KeyEvent.VK_D) {											// Walks to the right
 					tempObject.setVelX(5);
 				}
-				if(key == KeyEvent.VK_A) {
+				if(key == KeyEvent.VK_A) {											// Walks to the left
 					tempObject.setVelX(-5);
 				}
-				if(key == KeyEvent.VK_SPACE && !tempObject.isJumping()) {
+				if(key == KeyEvent.VK_SPACE && !tempObject.isJumping()) {			// Jumps
 					tempObject.setJumping(true);
 					tempObject.setVelY(-12);
 				}
 			}
 		}
 		}
-		if(key == KeyEvent.VK_ESCAPE) {
+		if(key == KeyEvent.VK_ESCAPE) {												// Escape
 			System.exit(0);
 		}
 	}

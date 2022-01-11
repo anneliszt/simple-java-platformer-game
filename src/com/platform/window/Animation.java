@@ -22,7 +22,7 @@ public class Animation {
 	 * @param speed speed of the animation
 	 * @param args
 	 */
-	public Animation(int speed, BufferedImage... args) { // Can get infinite amount of parameters
+	public Animation(int speed, BufferedImage... args) { 				// Can get infinite amount of parameters
 		this.speed = speed;
 		images = new BufferedImage[args.length];
 		
@@ -39,7 +39,7 @@ public class Animation {
 		index++;
 		if(index>speed) {
 			index = 0;
-			nextFrame();
+			nextFrame();												// Calls on next frame
 		}
 	}
 	

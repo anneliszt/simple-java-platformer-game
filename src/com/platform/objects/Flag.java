@@ -28,7 +28,6 @@ public class Flag extends GameObject{
 	public Flag(float x, float y, int type, ObjectID id) {
 		super(x, y, id);
 		this.type = type;
-
 	}
 
 	/**
@@ -45,10 +44,10 @@ public class Flag extends GameObject{
 	public void render(Graphics g) {
 	
 		if(type==0) { 
-			g.drawImage(tex.flag[0], (int)x, (int)y, null);
+			g.drawImage(tex.flag[0], (int)x, (int)y, null);							// Load hamster idle frame
 		}
 		if(type==1) { 
-			g.drawImage(tex.exit[0], (int)x, (int)y, null);
+			g.drawImage(tex.exit[0], (int)x, (int)y, null);							// Load exit sign
 		}
 		
 	}

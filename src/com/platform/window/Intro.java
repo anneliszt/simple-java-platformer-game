@@ -22,11 +22,12 @@ public class Intro implements MouseListener{
 	public void render(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
 		
+		// Loads images
 		BufferedImageLoader loader = new BufferedImageLoader();
-
 		bgImg = loader.loadImage("/bgIntro.png");
 		button = loader.loadImage("/introForeground.png");
 		
+		// Draw images
 		g2d.drawImage(bgImg, 0, 0, Game.WIDTH, Game.HEIGHT, null);
 		g2d.drawImage(button, 0, 0, Game.WIDTH, Game.HEIGHT, null);
 		

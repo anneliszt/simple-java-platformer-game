@@ -10,6 +10,8 @@ import com.platform.window.BufferedImageLoader;
 public class Texture {
 	
 	SpriteSheet bs, ps, fl, ex;
+	
+	// Load buffered images
 	private BufferedImage block_sheet = null;
 	private BufferedImage player_sheet = null;
 	private BufferedImage flag_sheet = null;
@@ -25,7 +27,9 @@ public class Texture {
 	 * Constructor
 	 */
 	public Texture() {
-		BufferedImageLoader loader = new BufferedImageLoader();
+		
+		// Load buffered images
+		BufferedImageLoader loader = new BufferedImageLoader();						
 		
 		try {
 			block_sheet = loader.loadImage("/texture.png");
@@ -36,6 +40,7 @@ public class Texture {
 			e.printStackTrace();
 		}
 		
+		// Creates new spritesheet objects
 		bs = new SpriteSheet(block_sheet);
 		ps = new SpriteSheet(player_sheet);
 		fl = new SpriteSheet(flag_sheet);
