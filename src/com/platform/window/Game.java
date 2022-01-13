@@ -6,8 +6,6 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
-import javax.sound.sampled.LineUnavailableException;
-
 import com.platform.framework.KeyInput;
 import com.platform.framework.ObjectID;
 import com.platform.framework.Texture;

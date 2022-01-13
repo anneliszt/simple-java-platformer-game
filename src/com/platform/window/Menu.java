@@ -1,7 +1,5 @@
 package com.platform.window;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -30,19 +28,11 @@ public class Menu implements MouseListener{
 		// Loads images
 		BufferedImageLoader loader = new BufferedImageLoader();
 		bg = loader.loadImage("/menuTitle.png");
-		bgImg = loader.loadImage("/menuBG.png");
+		bgImg = loader.loadImage("/menuBGTitle.png");
 
-		// Set font and font color
-		g.setFont(new Font("Courier New", Font.BOLD, 30));
-		g.setColor(Color.black);
-		
 		// Draw background image
 		g2d.drawImage(bgImg, 0, 0, Game.WIDTH, Game.HEIGHT, null);
 		g2d.drawImage(bg, 0, 0, Game.WIDTH, Game.HEIGHT, null);
-		
-		// Draw labels for the buttons
-		g.drawString("Start", startButton.x+20, startButton.y+30);
-		g.drawString("Exit", exitButton.x+20, exitButton.y+30);
 	}
 
 	public void mouseClicked(MouseEvent e) {
