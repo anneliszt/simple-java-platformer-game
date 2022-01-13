@@ -24,7 +24,7 @@ public class Game extends Canvas implements Runnable{
 	
 	public static int WIDTH, HEIGHT;
 	
-	public BufferedImage level1 = null, bg = null;
+	public BufferedImage bg = null;
 	
 	// Object
 	Handler handler;
@@ -62,15 +62,11 @@ public class Game extends Canvas implements Runnable{
 		tex = new Texture();
 		
 		BufferedImageLoader loader = new BufferedImageLoader();						// Loads the images
-		level1 = loader.loadImage("/bgLevel1.png"); 
 		bg = loader.loadImage("/petBG.png");
-		
 		
 		cam = new Camera(0, 0);														// Camera object
 		handler = new Handler(cam);													// Handler object
 	
-		handler.loadImageLevel(level1);												// Loads level 1
-		 
 		menu = new Menu();															// Menu object
 		intro = new Intro();														// Intro object
 		outro = new Outro();														// Outro object

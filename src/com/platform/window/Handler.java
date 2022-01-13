@@ -10,6 +10,8 @@ import com.platform.objects.Block;
 import com.platform.objects.Flag;
 import com.platform.objects.Player;
 
+import com.platform.objects.Spikes;
+
 /**
  * Handles the creation of levels
  */
@@ -20,7 +22,7 @@ public class Handler {
 	private GameObject tempObject;															
 	private Camera cam;
 	
-	private BufferedImage level2 = null, level3 = null;
+	private BufferedImage level1 = null, level2 = null, level3 = null;
 	
 	/**
 	 * Constructor
@@ -29,9 +31,12 @@ public class Handler {
 	public Handler(Camera cam) {
 		this.cam = cam;
 		
-		BufferedImageLoader loader = new BufferedImageLoader();								// Loads images
+		BufferedImageLoader loader = new BufferedImageLoader();		
+		level1 = loader.loadImage("/bgLevel1.png"); // Loads images
 		level2 = loader.loadImage("/bgLevel2.png");
 		level3 = loader.loadImage("/bgLevel3.png"); 
+		
+		loadImageLevel(level1);	
 	}
 	
 	/**
@@ -96,6 +101,10 @@ public class Handler {
 					addObject(new Flag(xx*32, yy*32, 1,  ObjectID.Flag));
 				}
 				
+				if (red == 0 && green == 234 & blue == 255) { 						// Spike
+					addObject(new Spikes(xx * 32, yy * 32, 0, ObjectID.Spikes));
+				}
+				
 				if(red == 0 && green == 0 & blue == 255) { 							// Player
 					addObject(new Player(xx*32, yy*32, this, cam, ObjectID.Player));
 				}
@@ -110,19 +119,23 @@ public class Handler {
 		clearLevel();																// Clear level
 		cam.setX(0);																// Reset camera
 		
-		switch(Game.LEVEL) 
-		{
-		case 1:
-			loadImageLevel(level2);													// Load level 2
-			break;
-		case 2:
-			loadImageLevel(level3);													// Load level 3
-			break;
-		case 3:
-			Game.State = Game.STATE.OUTRO;											// Load outro	
-			break;
+		switch(Game.LEVEL) {
+			case 1: loadImageLevel(level2); break;
+			case 2: loadImageLevel(level3);	break;
+			case 3: Game.State = Game.STATE.OUTRO; break;	
 		}
 		Game.LEVEL++;																// Increment game level
+	}
+	
+	public void reset() {
+		clearLevel();
+		cam.setX(0);
+		
+		switch(Game.LEVEL) {
+			case 1: loadImageLevel(level1); break;
+			case 2: loadImageLevel(level2); break;
+			case 3: loadImageLevel(level3); break;
+		}
 	}
 	
 	/**
