@@ -117,24 +117,27 @@ public class Handler {
 	 */
 	public void switchLevel() {
 		clearLevel();																// Clear level
-		cam.setX(0);																// Reset camera
+		cam.setX(0);																// Reset camera position
 		
 		switch(Game.LEVEL) {
-			case 1: loadImageLevel(level2); break;
-			case 2: loadImageLevel(level3);	break;
-			case 3: Game.State = Game.STATE.OUTRO; break;	
+			case 1: loadImageLevel(level2); break;									// Load level 2
+			case 2: loadImageLevel(level3);	break;									// Load level 3
+			case 3: Game.State = Game.STATE.OUTRO; break;							// Load outro
 		}
 		Game.LEVEL++;																// Increment game level
 	}
 	
+	/**
+	 * Resets level if player collides with the spike
+	 */
 	public void reset() {
-		clearLevel();
-		cam.setX(0);
+		clearLevel();																// Clear level
+		cam.setX(0);																// Reset camera position
 		
 		switch(Game.LEVEL) {
-			case 1: loadImageLevel(level1); break;
-			case 2: loadImageLevel(level2); break;
-			case 3: loadImageLevel(level3); break;
+			case 1: loadImageLevel(level1); break;									// Restart level 1
+			case 2: loadImageLevel(level2); break;									// Restart level 2
+			case 3: loadImageLevel(level3); break;									// Restart level 3
 		}
 	}
 	

@@ -102,8 +102,8 @@ public class Player extends GameObject{
 				if(getBounds().intersects(tempObject.getBounds())) {
 					handler.switchLevel();
 				}
-			} else if (tempObject.getID() == ObjectID.Spikes) {						// If we are colliding with the flag
-				// Switch level if it reaches the flag
+			} else if (tempObject.getID() == ObjectID.Spikes) {						// If we are colliding with the spikes
+				// Resets level if player collides with spikes
 				if(getBounds().intersects(tempObject.getBounds())) {
 					handler.reset();
 				}

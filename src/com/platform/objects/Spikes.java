@@ -36,9 +36,10 @@ public class Spikes extends GameObject {
 	/**
 	 * Renders and draws all of the necessary images into its respective type and
 	 * will placed according to the given x and y coordinate
+	 * 
+	 * <p>Type 0 = Spikes
 	 */
 	public void render(Graphics g) {
-
 		if (type == 0) {
 			g.drawImage(tex.spike[0], (int) x, (int) y, null);
 		}

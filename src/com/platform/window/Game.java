@@ -30,10 +30,9 @@ public class Game extends Canvas implements Runnable{
 	Handler handler;
 	Camera cam;
 	
-	// Camera bgCam;
 	static Texture tex;
 	
-	public static int LEVEL = 1;
+	public static int LEVEL = 1;													// Default level number
 	
 	/**
 	 * Represents a group of constants
