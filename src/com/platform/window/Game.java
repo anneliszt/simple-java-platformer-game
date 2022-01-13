@@ -203,11 +203,7 @@ public class Game extends Canvas implements Runnable{
 	 * @param args
 	 */
 	public static void main(String args[]) {
-		try {
-			new Window(800, 600, "Hamster Platform Game", new Game());
-		} catch (LineUnavailableException e) {
-			e.printStackTrace();
-		}
+		new Window(800, 600, "Hamster Platform Game", new Game());
 	}
 
 }

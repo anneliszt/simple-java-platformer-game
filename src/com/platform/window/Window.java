@@ -1,16 +1,6 @@
 package com.platform.window;
 
 import java.awt.Dimension;
-import java.io.File;
-import java.io.IOException;
-
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.DataLine;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFrame;
 
 /**
@@ -38,22 +28,8 @@ public class Window {
 	 * @throws LineUnavailableException 
 	 * 
 	 */
-	public Window(int w, int h, String title, Game game) throws LineUnavailableException {
-		// Background music
-		try {
-			AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File("res/bgmusic.wav"));
-
-			AudioFormat format = inputStream.getFormat();
-            DataLine.Info info = new DataLine.Info(Clip.class, format);
-            Clip clip = (Clip)AudioSystem.getLine(info);
-            clip.open(inputStream);
-            clip.start();
-	        
-		} catch (UnsupportedAudioFileException e1) {
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
+	public Window(int w, int h, String title, Game game){
+		
 		// Sets the size for the game
 		game.setPreferredSize(new Dimension(w, h));
 		game.setMaximumSize(new Dimension(w, h));
