@@ -16,7 +16,7 @@
 | res | Resources |
 | src | Source Codes |
 | Javadoc output.rar | Javadoc Output |
-| javaproject.jar | Executable .jar file |
+| javaplatformergame.jar | Executable .jar file |
 
 ![menuBG](https://user-images.githubusercontent.com/71485613/149113545-9ba559b3-24a6-488b-ac08-47d309557517.png)
 
