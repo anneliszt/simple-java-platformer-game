@@ -19,8 +19,6 @@ public class Menu implements MouseListener{
 	/**
 	 * Renders the appearance for the main menu
 	 * @param g tool that draws onto the component
-	 * @throws LineUnavailableException 
-	 * @throws InterruptedException 
 	 */
 	public void render(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
