@@ -9,6 +9,10 @@ import com.platform.framework.ObjectID;
 import com.platform.framework.Texture;
 import com.platform.window.Game;
 
+/**
+ * Spikes class object that gets all the methods from the GameObject class
+ * <br>Once player hits one of the spikes, the level will be reset
+ */
 public class Spikes extends GameObject {
 
 	Texture tex = Game.getInstance();
