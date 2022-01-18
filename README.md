@@ -24,7 +24,7 @@
 * Character sprites, Can textures, Title Screen by **Ann Destajo**
 * Background images are made by **@Lorminatti**
 * Tile textures by **Hannah Destajo**
-
+* Background music from Eastward OST Sam
 
 *This personal project is in compliance for the partial requirements in CMSC 22*
 *<br>Developed by: Ann Beatrice Destajo*
