@@ -3,7 +3,10 @@ package com.platform.objects;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 import com.platform.framework.GameObject;
 import com.platform.framework.ObjectID;
@@ -25,6 +28,7 @@ public class Player extends GameObject{
 	private final float MAX_SPEED = 10;												// Determines how fast player walks
 	
 	private Handler handler;														// Handler class
+	Game game = new Game();
 	Texture tex = Game.getInstance();												// Gets instance of texture
 	
 	private Animation playerWalk, playerWalkLeft;									// Animation class when walking
@@ -100,11 +104,29 @@ public class Player extends GameObject{
 			} else if (tempObject.getID() == ObjectID.Flag) {						// If we are colliding with the flag
 				// Switch level if it reaches the flag
 				if(getBounds().intersects(tempObject.getBounds())) {
+					
+					// Plays sound effect
+					try {
+						game.musicPlayer("nextLevel");
+					} catch (UnsupportedAudioFileException | IOException e) {
+						e.printStackTrace();
+					}
+					
+					// Switches level
 					handler.switchLevel();
 				}
 			} else if (tempObject.getID() == ObjectID.Spikes) {						// If we are colliding with the spikes
 				// Resets level if player collides with spikes
 				if(getBounds().intersects(tempObject.getBounds())) {
+					
+					// Plays sound effect
+					try {
+						game.musicPlayer("spike");
+					} catch (UnsupportedAudioFileException | IOException e) {
+						e.printStackTrace();
+					}
+					
+					// Resets level
 					handler.reset();
 				}
 			}

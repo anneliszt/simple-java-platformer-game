@@ -1,6 +1,9 @@
 package com.platform.window;
 
 import java.awt.Dimension;
+import java.io.IOException;
+
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFrame;
 
 /**
@@ -29,6 +32,13 @@ public class Window {
 	 * 
 	 */
 	public Window(int w, int h, String title, Game game){
+		
+		// Background music
+		try {
+			game.musicPlayer("introMusic");
+		} catch (UnsupportedAudioFileException | IOException e) {
+			e.printStackTrace();
+		}
 		
 		// Sets the size for the game
 		game.setPreferredSize(new Dimension(w, h));

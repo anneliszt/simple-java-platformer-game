@@ -2,6 +2,9 @@ package com.platform.framework;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
+
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 import com.platform.window.Game;
 import com.platform.window.Game.STATE;
@@ -13,6 +16,7 @@ import com.platform.window.Handler;
 public class KeyInput extends KeyAdapter{
 	
 	Handler handler;
+	Game game = new Game();
 	
 	/**
 	 * Constructor
@@ -39,8 +43,16 @@ public class KeyInput extends KeyAdapter{
 					tempObject.setVelX(-5);
 				}
 				if(key == KeyEvent.VK_SPACE && !tempObject.isJumping()) {			// Jumps
+					
 					tempObject.setJumping(true);
 					tempObject.setVelY(-12);
+					
+					// Jump sound effect
+					try {
+						game.musicPlayer("jump");
+					} catch (UnsupportedAudioFileException | IOException e1) {
+						e1.printStackTrace();
+					}
 				}
 			}
 		}

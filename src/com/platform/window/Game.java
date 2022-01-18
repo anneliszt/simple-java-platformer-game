@@ -5,6 +5,14 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.Objects;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 import com.platform.framework.KeyInput;
 import com.platform.framework.ObjectID;
@@ -19,6 +27,7 @@ public class Game extends Canvas implements Runnable{
 
 	private boolean running = false;
 	private Thread thread;
+	String path;
 	
 	public static int WIDTH, HEIGHT;
 	
@@ -30,7 +39,7 @@ public class Game extends Canvas implements Runnable{
 	
 	static Texture tex;
 	
-	public static int LEVEL = 1;													// Default level number
+	public static int LEVEL = 1;  // Default level number
 	
 	/**
 	 * Represents a group of constants
@@ -187,6 +196,24 @@ public class Game extends Canvas implements Runnable{
 		bs.show();
 	}
     
+	/**
+	 * Plays music in the specified file path
+	 * @param path file path
+	 * @throws UnsupportedAudioFileException
+	 * @throws IOException
+	 */
+	public void musicPlayer(String path) throws UnsupportedAudioFileException, IOException {
+		AudioInputStream stream = AudioSystem.getAudioInputStream(Objects.requireNonNull(getClass().getResource("/music/" + path +".wav")));
+		Clip clip;
+		try {
+			clip = AudioSystem.getClip();
+			clip.open(stream);
+			clip.start();
+		} catch (LineUnavailableException e) {
+			e.printStackTrace();
+		}
+		
+	}
 	/**
 	 * Get instance of the texture class
 	 * @return texture
