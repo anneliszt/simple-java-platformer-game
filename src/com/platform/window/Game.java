@@ -197,7 +197,7 @@ public class Game extends Canvas implements Runnable{
 	}
     
 	/**
-	 * Plays music in the specified file path
+	 * Plays background music in the specified file path
 	 * @param path file path
 	 * @throws UnsupportedAudioFileException
 	 * @throws IOException
@@ -216,6 +216,13 @@ public class Game extends Canvas implements Runnable{
 		}
 	}
 	
+	/**
+	 * Plays sound effect in the specified file path
+	 * @param path file path
+	 * @throws UnsupportedAudioFileException
+	 * @throws IOException
+	 * @throws InterruptedException 
+	 */
 	public void sfxPlayer(String path) throws UnsupportedAudioFileException, IOException {
 		AudioInputStream stream = AudioSystem.getAudioInputStream(Objects.requireNonNull(getClass().getResource("/music/" + path +".wav")));
 		Clip clip;
