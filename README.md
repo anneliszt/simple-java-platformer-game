@@ -20,6 +20,11 @@
 
 ![menuBG](https://user-images.githubusercontent.com/71485613/149113545-9ba559b3-24a6-488b-ac08-47d309557517.png)
 
+## Controls
+* D - walk to the right
+* A - walk to the left
+* SPACE - jump
+
 ## Resources
 * Character sprites, Can textures, Title Screen by **Ann Destajo**
 * Background images are made by **@Lorminatti**
