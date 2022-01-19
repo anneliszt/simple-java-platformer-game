@@ -201,8 +201,22 @@ public class Game extends Canvas implements Runnable{
 	 * @param path file path
 	 * @throws UnsupportedAudioFileException
 	 * @throws IOException
+	 * @throws InterruptedException 
 	 */
-	public void musicPlayer(String path) throws UnsupportedAudioFileException, IOException {
+	public void bgmPlayer(String path) throws UnsupportedAudioFileException, IOException {
+		AudioInputStream stream = AudioSystem.getAudioInputStream(Objects.requireNonNull(getClass().getResource("/music/" + path +".wav")));
+		Clip clip;
+		try {
+			clip = AudioSystem.getClip();
+			clip.open(stream);
+		    clip.loop(Clip.LOOP_CONTINUOUSLY);
+		    Thread.sleep(100); 
+		} catch (LineUnavailableException | InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void sfxPlayer(String path) throws UnsupportedAudioFileException, IOException {
 		AudioInputStream stream = AudioSystem.getAudioInputStream(Objects.requireNonNull(getClass().getResource("/music/" + path +".wav")));
 		Clip clip;
 		try {
@@ -212,8 +226,8 @@ public class Game extends Canvas implements Runnable{
 		} catch (LineUnavailableException e) {
 			e.printStackTrace();
 		}
-		
 	}
+	
 	/**
 	 * Get instance of the texture class
 	 * @return texture

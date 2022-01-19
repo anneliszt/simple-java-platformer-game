@@ -49,7 +49,7 @@ public class KeyInput extends KeyAdapter{
 					
 					// Jump sound effect
 					try {
-						game.musicPlayer("jump");
+						game.sfxPlayer("jump");
 					} catch (UnsupportedAudioFileException | IOException e1) {
 						e1.printStackTrace();
 					}

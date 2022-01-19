@@ -107,7 +107,7 @@ public class Player extends GameObject{
 					
 					// Plays sound effect
 					try {
-						game.musicPlayer("nextLevel");
+						game.sfxPlayer("nextLevel");
 					} catch (UnsupportedAudioFileException | IOException e) {
 						e.printStackTrace();
 					}
@@ -121,7 +121,7 @@ public class Player extends GameObject{
 					
 					// Plays sound effect
 					try {
-						game.musicPlayer("spike");
+						game.sfxPlayer("spike");
 					} catch (UnsupportedAudioFileException | IOException e) {
 						e.printStackTrace();
 					}

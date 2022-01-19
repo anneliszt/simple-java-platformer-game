@@ -35,7 +35,7 @@ public class Window {
 		
 		// Background music
 		try {
-			game.musicPlayer("introMusic");
+			game.bgmPlayer("introMusic");
 		} catch (UnsupportedAudioFileException | IOException e) {
 			e.printStackTrace();
 		}
